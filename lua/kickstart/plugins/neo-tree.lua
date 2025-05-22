@@ -9,12 +9,23 @@ return {
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
-  lazy = false,
+  cmd = 'Neotree',
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     filesystem = {
+      filtered_items = {
+        visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = {
+          -- add extension names you want to explicitly exclude
+          -- '.git',
+          -- '.DS_Store',
+          -- 'thumbs.db',
+        },
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
