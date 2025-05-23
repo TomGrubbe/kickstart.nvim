@@ -30,6 +30,7 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
+-- Go snippets
 ls.add_snippets('go', {
   s({trig='err', snippetType='snippet', desc='Insert go error handler'},
     fmta(
@@ -45,26 +46,62 @@ ls.add_snippets('go', {
   ),
 })
 
+-- Bash snippets
 ls.add_snippets('sh', {
   s('cwd', {
     t("CWD=$(cd \"$(dirname \"$0\")\" && pwd)")
   }),
+
   s('here', {
     t({"cat <<EOF",
       "",
       "EOF",
     }),
   }),
-  s('fail', {
-    t({"fail()",
-      "{",
-      "  echo \"\"",
-      "  echo \"ERROR: $1\"",
-      "  echo \"\"",
-      "  exit 1",
-      "}",
-      ""}),
-  }),
+
+  s({trig='iif', desc='In-line if statement'},
+    fmta(
+      [[
+        [ <> ] && fail "<>"
+      ]],
+      {
+        i(1, '<condition>'),
+        i(2, '<error message>'),
+      }
+    )
+  ),
+
+  s('fail',
+    fmta(
+      [[
+        fail()
+        {
+          echo ""
+          echo "ERROR: $1"
+          echo ""
+          exit 1
+        }
+
+      ]],
+      { }
+    )
+  ),
+
+  s('sanity_check',
+    fmta(
+      [[
+        sanity_check()
+        {
+          [ <> ] && fail "<>"
+        }
+      ]],
+      {
+        i(1, '<condition>'),
+        i(2, '<error message>'),
+      }
+    )
+  ),
+
   s('usage', {
     t({"usage()",
       "{",
@@ -87,6 +124,7 @@ ls.add_snippets('sh', {
       "}",
       ""}),
   }),
+
   s('process_args', {
     t({"process_args()",
       "{",
@@ -110,9 +148,39 @@ ls.add_snippets('sh', {
       "}",
       ""}),
   }),
-  s('wh', fmt('while [ {} ]; then', {
-      i(1),
-    })),
+
+  s('getopts', {
+    t({"while getopts \"hd:?\" opt",
+      "do",
+      "  case \"$opt\" in",
+      "    h)",
+      "      usage",
+      "      ;;",
+      "    d)",
+      "      INSTALL_DIR=${OPTARG}",
+      "      ;;",
+      "    *)",
+      "      echo \"-- What? --\"",
+      "      usage",
+      "      ;;",
+      "  esac",
+      "done",
+      ""}),
+  }),
+
+  s({trig='wh', snippetType='snippet', desc='Basic while loop'},
+    fmta(
+      [[
+        while [ <> ]; do
+          <>
+        done
+      ]],
+      {
+        i(1, '<enter condition>'),
+        i(2, '<add logic>'),
+      }
+    )
+  ),
 })
 
 
