@@ -11,4 +11,9 @@ fail()
   exit 1
 }
 
+Main()
+{
 
+}
+
+Main "$@"
