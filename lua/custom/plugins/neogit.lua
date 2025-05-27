@@ -10,4 +10,14 @@ return {
     "echasnovski/mini.pick",         -- optional
     "folke/snacks.nvim",             -- optional
   },
+  config = function ()
+    require('neogit').setup({
+      signs = {
+        -- { CLOSED, OPENED }
+        hunk = { "", "" },
+        item = { "▶", "▼" },
+        section = { "▶", "▼" },
+      },
+    })
+  end
 }
