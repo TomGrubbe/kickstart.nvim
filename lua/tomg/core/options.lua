@@ -53,6 +53,7 @@ vim.cmd 'autocmd BufNewFile *.go 0r ~/.config/nvim/templates/go_init.go'
 require 'tomg.core.term'
 require 'tomg.core.luasnips'
 require 'tomg.core.diag'
+require 'tomg.core.keymaps'
 
 --------------------------------------------------------------------------
 -- END  TomG
