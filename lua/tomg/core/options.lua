@@ -33,6 +33,10 @@ vim.cmd 'syntax on'
 -- Use vim-type of mouse selection behavior
 vim.cmd 'set mouse='
 
+-- Disable using the system clipboard for dd/yy
+vim.g.clipboard=''
+
+
 -- make vim save and load the folding of the document each time it loads"
 -- also places the cursor in the last place that it was left."
 --vim.cmd 'au BufWinLeave * mkview'
