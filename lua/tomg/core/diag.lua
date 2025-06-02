@@ -14,5 +14,5 @@ end
 
 vim.keymap.set('n', '<leader>xd', Toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle vim diagnostics" })
 
-vim.g.diagnostics_active = false
-vim.diagnostic.enable(false)
+-- vim.g.diagnostics_active = false
+-- vim.diagnostic.enable(false)

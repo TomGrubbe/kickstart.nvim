@@ -1,5 +1,7 @@
 -- Use tree-style file explorer
 vim.cmd 'let g:netrw_liststyle = 3'
+vim.cmd 'let g:netrw_winsize = 30'
+vim.cmd 'let g:netrw_banner = 0'
 
 -- Simulate NerdTree
 -- vim.api.nvim_set_keymap('n', '<C-N>', ':Lexplore<CR> :vertical resize 30<CR>', { noremap = true })
