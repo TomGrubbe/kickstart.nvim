@@ -10,7 +10,7 @@ vim.cmd 'let g:netrw_banner = 0'
 vim.cmd 'set fileformat=unix'
 vim.cmd 'set ffs=unix,dos'
 vim.opt.number = false
--- vim.cmd("set number relativenumber")
+vim.cmd 'set number relativenumber'
 vim.cmd 'set tabstop=2'
 vim.cmd 'set shiftwidth=2'
 vim.cmd 'set expandtab'
@@ -36,8 +36,7 @@ vim.cmd 'syntax on'
 vim.cmd 'set mouse='
 
 -- Disable using the system clipboard for dd/yy
-vim.g.clipboard=''
-
+vim.g.clipboard = ''
 
 -- make vim save and load the folding of the document each time it loads"
 -- also places the cursor in the last place that it was left."
