@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PROG=$(basename "$0")
 CWD=$(cd "$(dirname "$0")" && pwd)
 
 # Flags
 FILENAME="${CWD}/filename.txt"
+VERBOSE=false
 
 fail()
 {
@@ -16,6 +17,8 @@ fail()
 
 usage()
 {
+  [ -n "$1" ] && printf "\nERROR: %s\n" "$1"
+
 cat <<EOF
 
   USAGE: % ./${PROG} [options] 
@@ -30,15 +33,19 @@ cat <<EOF
 
     % ./${PROG} <add flags here>
 
+  NOTES:
+
+    * <add notes here>
+
 EOF
   exit 0
 }
 
 process_args()
 {
-  [ $# -lt  0 ] && usage
+  [ $# -eq 0 ] && usage
 
-  while getopts "hf:?" opt
+  while getopts ":hvf:?" opt
   do
     case "$opt" in
       h)
@@ -47,9 +54,14 @@ process_args()
       f)
         FILENAME=${OPTARG}
         ;;
-      *)
-        echo "-- What? --"
-        usage
+      v)
+        VERBOSE=true
+        ;;
+      \?)
+        usage "Invalid argument: -$OPTARG"
+        ;;
+      :)
+        usage "Option -$OPTARG requires an argument."
         ;;
     esac
   done
